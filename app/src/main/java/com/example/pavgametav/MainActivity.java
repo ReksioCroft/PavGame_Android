@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         RecyclerViewActivity.setDbEngineInitialized( false );
         startActivity( new Intent( MainActivity.this, RecyclerViewActivity.class ) );
         openFragment( new HomeFragment() );
+        setTitle( "HOME" );
     }
 
     @Override
@@ -73,8 +74,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if ( drawer.isDrawerOpen( GravityCompat.START ) ) {
             drawer.closeDrawer( GravityCompat.START );
         } else {
-            LoginActivity.getFireBaseCurrentInstance().signOut();
-            while ( LoginActivity.getFireBaseCurrentInstance().getCurrentUser() != null ) ;
+            while ( LoginActivity.getFireBaseCurrentInstance().getCurrentUser() != null )
+                LoginActivity.getFireBaseCurrentInstance().signOut();
             super.onBackPressed();
         }
     }
@@ -102,10 +103,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if ( id == R.id.nav_home ) {
             openFragment( new HomeFragment() );
+            setTitle( "HOME" );
         } else if ( id == R.id.nav_game ) {
             openFragment( new GameFragment() );
+            setTitle( "PAV GAME" );
         } else if ( id == R.id.nav_slideshow ) {
             openFragment( new SlideshowFragment() );
+            setTitle( "INFOARENA" );
         }
 
         DrawerLayout drawer = findViewById( R.id.drawer_layout );
@@ -140,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         finish();
     }
 
-    private void initializareMatrix() {
+    private void initializeMatrix() {
         nrDala = nrGreseli = 0;
         for ( int i = 0; i < lat; i++ ) {
             for ( int j = 0; j < lat; j++ ) {
@@ -156,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             s = input.getText().toString();
             lat = 1 << Integer.parseInt( s );
             input.setHint( R.string.pozDala );
-            initializareMatrix();
+            initializeMatrix();
             LinearLayout pavGameBoard = findViewById( R.id.pavGameBoard );
             int maxWidth = getResources().getDisplayMetrics().widthPixels / lat;
             for ( int i = 0; i < lat; i++ ) {
@@ -189,8 +193,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void makeLogout( MenuItem logOutButton ) {
-        LoginActivity.getFireBaseCurrentInstance().signOut();
-        while ( LoginActivity.getFireBaseCurrentInstance().getCurrentUser() != null ) ;
+        while ( LoginActivity.getFireBaseCurrentInstance().getCurrentUser() != null )
+            LoginActivity.getFireBaseCurrentInstance().signOut();
         finish();
     }
 
