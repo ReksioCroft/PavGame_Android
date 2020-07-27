@@ -9,7 +9,7 @@ import java.util.List;
 
 @Dao
 public interface GameDao {
-    @Query( "SELECT * FROM gameplay_history" )
+    @Query( "SELECT DISTINCT nume_jucator, game_type, result, count(*) as id from gameplay_history  group by nume_jucator, game_type, result order by id desc, nume_jucator, game_type, result" )
     LiveData < List < GameHistory > > getAllGames();
 
     @Insert

@@ -36,10 +36,12 @@ public class ContactsAdapter extends RecyclerView.Adapter < ContactsViewHolder >
             contactsViewHolder.mTextViewName.setText( currentGame.getNume() );
             contactsViewHolder.mTextViewResult.setText( currentGame.getResult() );
             contactsViewHolder.mTextViewType.setText( currentGame.getGameType() );
+            contactsViewHolder.mTextViewTotalPoints.setText( String.valueOf( currentGame.getGameId() ) );
         } else {
             contactsViewHolder.mTextViewName.setText( R.string.noText );
             contactsViewHolder.mTextViewResult.setText( R.string.noText );
             contactsViewHolder.mTextViewType.setText( R.string.noText );
+            contactsViewHolder.mTextViewTotalPoints.setText( R.string.noText );
         }
     }
 

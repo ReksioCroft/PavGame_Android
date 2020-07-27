@@ -13,6 +13,7 @@ public class ContactsViewHolder extends RecyclerView.ViewHolder {
     protected final TextView mTextViewName;
     protected final TextView mTextViewResult;
     protected final TextView mTextViewType;
+    protected final TextView mTextViewTotalPoints;
 
     public ContactsViewHolder( @NonNull View itemView ) {
         super( itemView );
@@ -20,5 +21,6 @@ public class ContactsViewHolder extends RecyclerView.ViewHolder {
         mTextViewName = itemView.findViewById( R.id.textview_name );
         mTextViewResult = itemView.findViewById( R.id.textview_result );
         mTextViewType = itemView.findViewById( R.id.textview_gameType );
+        mTextViewTotalPoints = itemView.findViewById( R.id.textView_totalPoints );
     }
 }
