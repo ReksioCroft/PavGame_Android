@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pavgametav.recyleview.RecyclerViewActivity;
@@ -25,6 +26,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private EditText input;
@@ -62,8 +65,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = findViewById( R.id.nav_view );
         navigationView.setNavigationItemSelectedListener( this );
+        View headerView = navigationView.getHeaderView( 0 );
+        TextView textView = headerView.findViewById( R.id.nav_header_subtitle );
+        textView.setText( Objects.requireNonNull( LoginActivity.getFireBaseCurrentInstance().getCurrentUser() ).getEmail() );
+
         RecyclerViewActivity.setDbEngineInitialized( false );
         startActivity( new Intent( MainActivity.this, RecyclerViewActivity.class ) );
+
         openFragment( new HomeFragment() );
         setTitle( "HOME" );
     }
