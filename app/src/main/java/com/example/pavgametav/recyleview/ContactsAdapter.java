@@ -17,6 +17,7 @@ public class ContactsAdapter extends RecyclerView.Adapter < ContactsViewHolder >
 
     private List < GameHistory > mContacts;
     private final LayoutInflater mInflater;
+    private View itemView;
 
     public ContactsAdapter( Context context ) {
         mInflater = LayoutInflater.from( context );
@@ -25,7 +26,7 @@ public class ContactsAdapter extends RecyclerView.Adapter < ContactsViewHolder >
     @NonNull
     @Override
     public ContactsViewHolder onCreateViewHolder( @NonNull ViewGroup parent, int viewType ) {
-        View itemView = mInflater.inflate( R.layout.contact_item, parent, false );
+        itemView = mInflater.inflate( R.layout.contact_item, parent, false );
         return new ContactsViewHolder( itemView );
     }
 
@@ -36,7 +37,23 @@ public class ContactsAdapter extends RecyclerView.Adapter < ContactsViewHolder >
             contactsViewHolder.mTextViewName.setText( currentGame.getNume() );
             contactsViewHolder.mTextViewResult.setText( currentGame.getResult() );
             contactsViewHolder.mTextViewType.setText( currentGame.getGameType() );
-            contactsViewHolder.mTextViewTotalPoints.setText( String.valueOf( currentGame.getGameId() ) );
+
+            String totalPoints = itemView.getResources().getString( R.string.total_points ) + currentGame.getGameId();
+            contactsViewHolder.mTextViewTotalPoints.setText( totalPoints );
+
+            if ( contactsViewHolder.mTextViewResult.getText().equals( "Lose" ) ) {
+                contactsViewHolder.mTextViewName.setTextColor( itemView.getResources().getColor( R.color.colorAccent ) );
+                contactsViewHolder.mTextViewResult.setTextColor( itemView.getResources().getColor( R.color.colorAccent ) );
+                contactsViewHolder.mTextViewType.setTextColor( itemView.getResources().getColor( R.color.colorAccent ) );
+                contactsViewHolder.mTextViewTotalPoints.setTextColor( itemView.getResources().getColor( R.color.colorAccent ) );
+                contactsViewHolder.mCard.setCardBackgroundColor( itemView.getResources().getColor( R.color.colorPrimary ) );
+            } else {
+                contactsViewHolder.mTextViewName.setTextColor( itemView.getResources().getColor( R.color.colorPrimary ) );
+                contactsViewHolder.mTextViewResult.setTextColor( itemView.getResources().getColor( R.color.colorPrimary ) );
+                contactsViewHolder.mTextViewType.setTextColor( itemView.getResources().getColor( R.color.colorPrimary ) );
+                contactsViewHolder.mTextViewTotalPoints.setTextColor( itemView.getResources().getColor( R.color.colorPrimary ) );
+                contactsViewHolder.mCard.setCardBackgroundColor( itemView.getResources().getColor( R.color.colorAccent ) );
+            }
         } else {
             contactsViewHolder.mTextViewName.setText( R.string.noText );
             contactsViewHolder.mTextViewResult.setText( R.string.noText );

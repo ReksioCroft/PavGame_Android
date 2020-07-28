@@ -42,5 +42,5 @@
     <string name="confirm_login">Confirm Login</string>
     <string name="not_registered_create_new_account">Not registered? Create new account</string>
     <string name="noText">no text</string>
-    <string name="total_points">Total Points:</string>
+    <string name="total_points">Total Points:&#160;</string>
 </resources>
